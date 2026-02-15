@@ -1,5 +1,5 @@
 // Configuration
-const API_URL = "https://cgi.di.uoa.gr/~sdi2500194/aliquot_api.cgi";
+const API_URL = "https://cgi.di.uoa.gr/~sdi2500194/aliquot_api.cgi"; 
 
 // --- Theme Logic ---
 function toggleTheme() {
@@ -20,6 +20,41 @@ function updateIcon(theme) {
 const savedTheme = localStorage.getItem("theme") || "light";
 document.documentElement.setAttribute("data-theme", savedTheme);
 updateIcon(savedTheme);
+
+
+// --- ΝΕΟ: Background Collage Generation ---
+function generateBackgroundCollage() {
+    const collageContainer = document.getElementById('background-collage');
+    const numberOfElements = 80; // Πόσοι αριθμοί θα δημιουργηθούν
+
+    for (let i = 0; i < numberOfElements; i++) {
+        const numSpan = document.createElement('span');
+        numSpan.classList.add('bg-number');
+        
+        // Τυχαίος αριθμός από 0 έως 999
+        numSpan.innerText = Math.floor(Math.random() * 1000);
+
+        // Τυχαία θέση
+        numSpan.style.left = Math.random() * 100 + 'vw'; // vw = viewport width
+        numSpan.style.top = Math.random() * 100 + 'vh';  // vh = viewport height
+
+        // Τυχαίο μέγεθος (μεταξύ 1rem και 4rem)
+        const randomSize = Math.random() * 3 + 1;
+        numSpan.style.fontSize = randomSize + 'rem';
+
+        // Τυχαία περιστροφή
+        const randomRotation = Math.random() * 360;
+        numSpan.style.transform = `rotate(${randomRotation}deg)`;
+        
+        // Τυχαία διαφάνεια για περισσότερο βάθος (προαιρετικό)
+        numSpan.style.opacity = Math.random() * 0.5 + 0.2;
+
+        collageContainer.appendChild(numSpan);
+    }
+}
+
+// Εκτέλεση της συνάρτησης όταν φορτώσει η σελίδα
+window.addEventListener('DOMContentLoaded', generateBackgroundCollage);
 
 
 // --- Calculation Logic ---

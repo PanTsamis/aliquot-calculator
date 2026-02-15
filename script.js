@@ -25,29 +25,37 @@ updateIcon(savedTheme);
 // --- ΝΕΟ: Background Collage Generation ---
 function generateBackgroundCollage() {
     const collageContainer = document.getElementById('background-collage');
-    const numberOfElements = 80; // Πόσοι αριθμοί θα δημιουργηθούν
+    const numberOfElements = 150; // Αύξηση στοιχείων
+
+    // Πίνακας με μαθηματικά σύμβολα
+    const symbols = ['+', '-', '×', '÷', '=', '≈', '≠', '≤', '≥', '∞', 'π', 'e', '√', '∫', '∑', '∏'];
 
     for (let i = 0; i < numberOfElements; i++) {
         const numSpan = document.createElement('span');
         numSpan.classList.add('bg-number');
         
-        // Τυχαίος αριθμός από 0 έως 999
-        numSpan.innerText = Math.floor(Math.random() * 1000);
+        // Τυχαία επιλογή: Αριθμός ή Σύμβολο
+        if (Math.random() > 0.3) { // 70% πιθανότητα για αριθμό
+            numSpan.innerText = Math.floor(Math.random() * 1000);
+        } else { // 30% πιθανότητα για σύμβολο
+            const randomIndex = Math.floor(Math.random() * symbols.length);
+            numSpan.innerText = symbols[randomIndex];
+        }
 
         // Τυχαία θέση
-        numSpan.style.left = Math.random() * 100 + 'vw'; // vw = viewport width
-        numSpan.style.top = Math.random() * 100 + 'vh';  // vh = viewport height
+        numSpan.style.left = Math.random() * 100 + 'vw';
+        numSpan.style.top = Math.random() * 100 + 'vh';
 
-        // Τυχαίο μέγεθος (μεταξύ 1rem και 4rem)
-        const randomSize = Math.random() * 3 + 1;
+        // Τυχαίο μέγεθος (λίγο μεγαλύτερο εύρος)
+        const randomSize = Math.random() * 4 + 1;
         numSpan.style.fontSize = randomSize + 'rem';
 
         // Τυχαία περιστροφή
         const randomRotation = Math.random() * 360;
         numSpan.style.transform = `rotate(${randomRotation}deg)`;
         
-        // Τυχαία διαφάνεια για περισσότερο βάθος (προαιρετικό)
-        numSpan.style.opacity = Math.random() * 0.5 + 0.2;
+        // Τυχαία διαφάνεια
+        numSpan.style.opacity = Math.random() * 0.5 + 0.3;
 
         collageContainer.appendChild(numSpan);
     }

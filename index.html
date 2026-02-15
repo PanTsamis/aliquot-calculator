@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aliquot Sequence Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle Dark Mode">🌙</button>
+    
+    <h1>Aliquot Calculator</h1>
+    
+    <label for="startNum">Starting Number</label>
+    <input type="number" id="startNum" placeholder="e.g. 12" min="0">
+
+    <label for="maxLen">Max Length (0 for unlimited)</label>
+    <input type="number" id="maxLen" value="0" min="0">
+
+    <label for="mode">Output Mode</label>
+    <select id="mode">
+        <option value="f">Full Sequence</option>
+        <option value="l">Length Only</option>
+    </select>
+
+    <button class="calc-btn" id="calcBtn" onclick="calculateSequence()">Calculate</button>
+
+    <div id="results-area">
+        <div style="text-align: center; opacity: 0.6;">Results will appear here...</div>
+    </div>
+</div>
+
+<div class="footer">
+    Made by <a href="https://github.com/PanTsamis" target="_blank">PanTsamis</a>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
